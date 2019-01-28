@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import Header from './Header';
 import Formulario from './Formulario';
 class App extends Component {
+
+  cotizarSeguro = (datos) =>{
+    console.log(datos)
+  }
   render() {
     return (
       <div className="container">
@@ -13,7 +17,10 @@ class App extends Component {
         <Header
          titulo="Cotizador de Seguro de Autos"
         />
-        <Formulario />
+        <Formulario
+        //nota no es necesario llamar this.props ya que estamos desde el padre
+          cotizarSeguro={this.cotizarSeguro}
+        />
 
         </div>
         </div>

@@ -29,14 +29,29 @@ class Formulario extends Component{
     //cotizarSeguro(e){ // bind(this)
     cotizarSeguro = (e) =>{
         e.preventDefault();
-        console.log(this.marcaRef.current.value);
+
+        //leer el plan para que pueda seleccionar y mostrar
+        const plan = this.planBasicoRef.current.checked ? 'basico' : 'completo';
+        
         // obtener los datos
+        // console.log(this.marcaRef.current.value);
 
         // crear el objeto
-
-
+        const infoAuto = {
+            marca: this.marcaRef.current.value,
+            year: this.yearRef.current.value,
+            plan:  plan
+        }
+        // console.log(infoAuto);
+         // para poder enviar la informacion al padre (App) <Formulario /> se debe llamar un metodo(cotizarSeguro) en el padre
+        
         // enviarlo al componente principal
+            //le pasamos desde el padre al hijo this.props llamamos el objeto y pasamos por el la infoAuto estos datos se iran para el padre atravez del metodo declarado el cual podemos llamar datos como parametros y puedas mostrarse desde App.js
+            this.props.cotizarSeguro(infoAuto);
 
+        //resetear el formulario (opcional), por experiencia de usuario en caso quiera cambiar alguna opcion en el formulario 
+        // se puede comentar esta opcion
+        e.currentTarget.reset()    
     }
     render() {
         return (
