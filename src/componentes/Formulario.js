@@ -51,7 +51,7 @@ class Formulario extends Component{
 
         //resetear el formulario (opcional), por experiencia de usuario en caso quiera cambiar alguna opcion en el formulario 
         // se puede comentar esta opcion
-        e.currentTarget.reset()    
+        // e.currentTarget.reset()    
     }
     render() {
         return (

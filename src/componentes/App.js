@@ -1,10 +1,36 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Formulario from './Formulario';
+import {obtenerDiferenciaAnio, calcularMarca, obtenerPlan} from '../helper';
 class App extends Component {
 
   cotizarSeguro = (datos) =>{
-    console.log(datos)
+    // console.log(datos)
+    // para realizar los calculos utilizamos el destructuring
+    const {marca, plan, year} = datos; // donde datos continene lo que se le paso a cotizarSeguro = infoAuto
+
+
+    //Agregar una base de 2000, 
+    let resultado = 2000;
+
+    // Obtener la diferencia de a~os y por cada a~os resta el 3%
+    const diferencia = obtenerDiferenciaAnio(year);
+
+    
+    // por cada a~o restar el 3% al valor del seguro
+    resultado -=((diferencia * 3) * resultado ) / 100;
+
+    //Americano 15% Asiatico %5 y europeo 30% de incremento al valor actual
+    resultado = calcularMarca(marca) * resultado;
+
+    //el plan del auto, el basico incrementa el valor 20% y cobertura completa 50%
+    let incrementoPlan = obtenerPlan(plan);
+
+    // dependiendo del plan incrementar
+    
+    resultado = parseFloat( incrementoPlan * resultado).toFixed(2);
+
+    console.log(resultado)
   }
   render() {
     return (
