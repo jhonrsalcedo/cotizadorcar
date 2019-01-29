@@ -1,11 +1,25 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Formulario from './Formulario';
+import Resumen from './Resumen';
 import {obtenerDiferenciaAnio, calcularMarca, obtenerPlan} from '../helper';
 class App extends Component {
+  // dos formas de llamar con el constructor o solo llamar el objeto
+  constructor(props){
+    super(props);
+    this.state = {
+    resultado:'',
+    datos:{}
+  }
+  };
+
+  // state = {
+  //   resultado:'',
+  //   datos: { }
+  // }
 
   cotizarSeguro = (datos) =>{
-    // console.log(datos)
+    // console.log(datos);
     // para realizar los calculos utilizamos el destructuring
     const {marca, plan, year} = datos; // donde datos continene lo que se le paso a cotizarSeguro = infoAuto
 
@@ -30,7 +44,18 @@ class App extends Component {
     
     resultado = parseFloat( incrementoPlan * resultado).toFixed(2);
 
-    console.log(resultado)
+    //Crear objeto para resumen
+    const datosAuto = {
+      marca: marca,
+      plan: plan,
+      year: year
+    }
+
+ // ya tenemos los costos
+     this.setState({
+       resultado : resultado,
+       datos: datosAuto
+     }) 
   }
   render() {
     return (
@@ -47,7 +72,10 @@ class App extends Component {
         //nota no es necesario llamar this.props ya que estamos desde el padre
           cotizarSeguro={this.cotizarSeguro}
         />
-
+        <Resumen
+          datos={this.state.datos}
+          resultado={this.state.resultado}
+        />
         </div>
         </div>
         </div>
