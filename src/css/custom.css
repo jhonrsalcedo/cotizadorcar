@@ -1,7 +1,11 @@
-body {
+/* body {
     background-image: linear-gradient(to top, #37ecba 0%, #72afd3 100%);
 }
 
 .background-auto {
     background-image: linear-gradient(to top, #37ecba 0%, #72afd3 100%);
+} */
+
+.font-car{
+    font-size: 18px !important;
 }

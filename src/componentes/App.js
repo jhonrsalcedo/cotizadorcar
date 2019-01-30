@@ -2,21 +2,22 @@ import React, { Component } from 'react';
 import Header from './Header';
 import Formulario from './Formulario';
 import Resumen from './Resumen';
+import Resultado from './Resultado';
 import {obtenerDiferenciaAnio, calcularMarca, obtenerPlan} from '../helper';
 class App extends Component {
   // dos formas de llamar con el constructor o solo llamar el objeto
-  constructor(props){
-    super(props);
-    this.state = {
+  // constructor(props){
+  //   super(props);
+  //   this.state = {
+  //   resultado:'',
+  //   datos:{}
+  // }
+  // }
+
+  state = {
     resultado:'',
     datos:{}
   }
-  };
-
-  // state = {
-  //   resultado:'',
-  //   datos: { }
-  // }
 
   cotizarSeguro = (datos) =>{
     // console.log(datos);
@@ -71,9 +72,14 @@ class App extends Component {
         <Formulario
         //nota no es necesario llamar this.props ya que estamos desde el padre
           cotizarSeguro={this.cotizarSeguro}
+          datos={this.state.datos}
         />
         <Resumen
           datos={this.state.datos}
+         
+        />
+        <Resultado 
+        //utilizamoz this.state por que ya nos encontramos en el componente padre de lo contrario si estamos desde otro componente lo llamariamos this.props
           resultado={this.state.resultado}
         />
         </div>
